@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>backbone-demo</title>
+        <script type="text/javascript" data-main="main.js" src="./3libs/require.js"></script>
+    </head>
+    <body>
+        <div id="box">
+            <h2>可编辑的员工信息表</h2>
+            <button class="add">新增</button>
+            <table>
+
+            </table>
+        </div>
+    </body>
+    <script type="text/template" id="tr-tpl">
+        <!-- 姓名 年龄 职业 性别 学历 -->
+        <td><%= name %></td>
+        <td><%= degree %></td>
+        <td><%= sex %></td>
+        <td><%= profession %></td>
+        <td><%= age%></td>
+    </script>
+</html>
