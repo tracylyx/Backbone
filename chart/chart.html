@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>eChart入门</title>
+</head>
+<body>
+	<div id="main" style="height: 400px"></div>
+
+	<script src="echarts-2.2.7/build/dist/echarts.js"></script>
+	<script type="text/javascript">
+		// 路径配置
+		require.config({
+			paths: {
+				echarts: 'echarts-2.2.7/build/dist'
+			}
+		});
+
+		// 使用
+		require(
+			[
+				'echarts', 
+				'echarts/chart/line', // 折现图，按需加载
+				'echarts/chart/bar' // 柱状图，按需加载
+			], function (ec) {
+				var myChart = ec.init(document.getElementById('main'));
+
+				var option = {
+					tooltip: { // 气泡提示配置
+						show: false
+					},
+					legend: { // 图例配置，表述数据和图形的关联
+						data: ['2015', '2016',  'YOY'],
+						orient: 'horizontal',
+						x: 'center',
+						y: 'bottom'
+					},
+					xAxis: [ // 直角坐标系中的横轴数组 X轴
+						{
+							type: 'category', // 坐标轴类型，横轴默认为类目轴
+							data: ['1月', '2月', '3月', '4月', '5月', '6月', '7月', '8月', '9月', '10月', '11月', '12月']
+						}
+					],
+					yAxis: [ // 直角坐标系中的纵轴数组
+						{
+							type: 'value',
+							// data: ['2015', '2016']
+							axisLabel : {
+				                formatter: '{value} %'
+				            }
+						},
+						{
+							type: 'value',
+							// axisLabel: 'left'
+							axisLabel : {
+				                formatter: '{value}'
+				            }
+						}
+					],
+					series: [ // 数据系列，一个图表可能包含多个系列，每一个系列可能包含多个数据
+						{
+							'name': 'YOY', // 系列名称
+							'type': 'line', // 图标类型
+							'data': ['215.7%', '123.6%', '85.5%', '104.8%', '35.8%', '33.8%']
+							// 'data': [215.7, 123.6, 85.5, '104.8%', '35.8%', '33.8%']
+						},
+						{
+							'name': '2015', // 系列名称
+							'type': 'bar', // 图标类型
+							'data': [1173179, 1424255, 1459331, 1671956, 2550826, 2981305, 1473179, 1423255, 2359331, 1981956, 2220826, 2451305]
+						},
+						{
+							'name': '2016', // 系列名称
+							'type': 'bar', // 图标类型
+							'data': [3703321, 3184336, 2706672, 3424749, 3465260, 3988807, 4703321, 2184336, 1706672, 1224749, 2265260, 3488807]
+						}
+					]
+				};
+
+				// 为echarts对象加载数据
+				myChart.setOption(option);
+			}
+		);
+	</script>
+</body>
+</html>
